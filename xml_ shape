@@ -1,0 +1,199 @@
+ <?xml version="1.0" encoding="utf-8"?>
+    <shape
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape=["rectangle" | "oval" | "line" | "ring"] >
+        <corners
+            android:radius="integer"
+            android:topLeftRadius="integer"
+            android:topRightRadius="integer"
+            android:bottomLeftRadius="integer"
+            android:bottomRightRadius="integer" />
+        <gradient
+            android:angle="integer"
+            android:centerX="integer"
+            android:centerY="integer"
+            android:centerColor="integer"
+            android:endColor="color"
+            android:gradientRadius="integer"
+            android:startColor="color"
+            android:type=["linear" | "radial" | "sweep"]
+            android:useLevel=["true" | "false"] />
+        <padding
+            android:left="integer"
+            android:top="integer"
+            android:right="integer"
+            android:bottom="integer" />
+        <size
+            android:width="integer"
+            android:height="integer" />
+        <solid
+            android:color="color" />
+        <stroke
+            android:width="integer"
+            android:color="color"
+            android:dashWidth="integer"
+            android:dashGap="integer" />
+    </shape>
+复制代码
+上面这段就是shape使用的格式，来看一下如何使用：
+ 
+<shape>
+定义这是一个GradientDrawable，必须作为根元素。
+android:shape　
+定义shape的值，必须是下面的之一：
+"rectangle"     矩阵，这也是默认的shape
+"oval"     　　　椭圆
+"line"    　　　　一条水平的直线。这种shape必须使用 <stroke> 元素来定义这条线的宽度
+"ring"     　　　圆环
+下面的属性只有当 android:shape="ring"才使用：
+android:innerRadius
+    尺寸。 内环的半径。一个尺寸值（dip等等）或者一个尺寸资源。
+android:innerRadiusRatio
+    Float类型。这个值表示内部环的比例，例如,如果android:innerRadiusRatio = " 5 ",那么内部的半径等于环的宽度除以5。这个值会被android:innerRadius重写。 默认值是9。
+android:thickness
+    尺寸。环的厚度，是一个尺寸值或尺寸的资源。
+android:thicknessRatio
+    Float类型。厚度的比例。例如,如果android:thicknessRatio= " 2 ",然后厚度等于环的宽度除以2。这个值是被android:innerRadius重写， 默认值是3。
+android:useLevel
+    Boolean类型。如果用在 LevelListDrawable里，那么就是true。如果通常不出现则为false。
+<corners>
+为Shape创建一个圆角，只有shape是rectangle时候才使用。
+android:radius
+    Dimension。圆角的半径。会被下面每个特定的圆角属性重写。
+android:topLeftRadius
+    Dimension。top-left 设置左上角的半径 
+android:topRightRadius
+    Dimension。top-right 设置右上角的半径 
+android:bottomLeftRadius
+    Dimension。 设置右下角的半径
+android:bottomRightRadius
+    Dimension。设置左下角的半径
+<gradient>
+指定这个shape的渐变颜色。
+android:angle
+    Integer。渐变的角度。 0 代表从 left 到 right。90 代表bottom到 top。必须是45的倍数，默认为0
+android:centerX
+    Float。渐变中心的相对X坐标，在0到1.0之间。
+android:centerY
+    Float。渐变中心的相对Y坐标，在0到1.0之间。
+android:centerColor
+    Color。可选的颜色值。基于startColor和endColor之间。
+android:endColor
+    Color。 结束的颜色。
+android:gradientRadius
+    Float 。渐变的半径。只有在 android:type="radial"才使用
+android:startColor
+    Color。开始的颜色值。
+android:type
+    Keyword。渐变的模式，下面值之一：
+"linear"     线形渐变。这也是默认的模式
+"radial"     辐射渐变。startColor即辐射中心的颜色
+"sweep"     扫描线渐变。
+android:useLevel
+    Boolean。如果在LevelListDrawable中使用，则为true
+<padding>
+内容与视图边界的距离
+android:left
+Dimension。左边填充距离.
+android:top
+Dimension。顶部填充距离.
+android:right
+Dimension。右边填充距离.
+android:bottom
+Dimension。底部填充距离.
+ 
+<size>
+这个shape的大小。
+android:height
+Dimension。这个shape的高度。
+android:width
+Dimension。这个shape的宽度。
+ 注意：默认情况下，这个shape会缩放到与他所在容器大小成正比。当你在一个ImageView中使用这个shape，你可以使用 android:scaleType="center"来限制这种缩放。
+<solid>
+填充这个shape的纯色
+android:color
+Color。颜色值，十六进制数，或者一个Color资源
+ 
+<stroke>
+ 这个shape使用的笔画，当android:shape="line"的时候，必须设置改元素。
+ android:width
+  　　 Dimension。笔画的粗细。
+ android:color
+        Color。笔画的颜色
+ android:dashGap
+        Dimension。每画一条线就间隔多少。只有当android:dashWidth也设置了才有效。
+ android:dashWidth
+        Dimension。每画一条线的长度。只有当 android:dashGap也设置了才有效。
+android:dashGap和android:dashWidth设置这条线为虚线的，其中android:dashWidth表示'-'这样一个横线的宽度，android:dashGap表示之间隔开的距离，
+使用别人的一段代码：
+button_bg.xml
+复制代码
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <!-- 填充 -->
+    <solid android:color="#ff9d77" /> <!-- 定义填充的颜色值 -->
+    
+    <!-- 描边 -->
+    <stroke
+        android:width="2dp"    
+        android:color="#fad3cf" /> <!-- 定义描边的宽度和描边的颜色值 -->
+    
+    <!-- 圆角 -->
+    <corners
+        android:bottomLeftRadius="5dp"
+        android:bottomRightRadius="5dp"
+        android:topLeftRadius="5dp"
+        android:topRightRadius="5dp" /> <!-- 设置四个角的半径 -->
+    
+      <!-- 间隔 -->
+    <padding
+        android:bottom="10dp"
+        android:left="10dp"
+        android:right="10dp"
+        android:top="10dp" /> <!-- 设置各个方向的间隔 -->
+ 
+</shape>
+复制代码
+button_pressed_bg.xml的内容如下：
+ 
+复制代码
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+ 
+    <!-- 渐变 -->
+    <gradient
+        android:endColor="#FFFFFF"
+        android:gradientRadius="50"
+        android:startColor="#ff8c00"
+        android:type="radial" />
+    
+    <!-- 描边 -->
+    <stroke
+        android:dashGap="3dp"
+        android:dashWidth="5dp"
+        android:width="2dp"
+        android:color="#dcdcdc" />
+    
+    <!-- 圆角 -->
+    <corners android:radius="5dp" />
+    
+    <!-- 间隔  -->
+    <padding
+        android:bottom="10dp"
+        android:left="10dp"
+        android:right="10dp"
+        android:top="10dp" />
+ 
+</shape>
+复制代码
+如何使用，看下面的代码：
+ 
+复制代码
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+    <item android:drawable="@drawable/button_pressed_bg" android:state_pressed="true"></item>
+    <item android:drawable="@drawable/button_bg"></item>
+ 
+</selector>
