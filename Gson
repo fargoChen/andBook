@@ -1,0 +1,4 @@
+＃Gson reflect array data， like List<String>
+
+Type type = new TypeToken<List<String>>(){}.getType();
+List<String> list = new Gson().fromJson(result.toString(), type);
