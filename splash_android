@@ -1,0 +1,21 @@
+#1# create a splash.xml like:
+
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item >
+        <color android:color="@color/color_bg_splash"/>
+    </item>
+    <item>
+        <bitmap android:gravity="center" android:src="@mipmap/bg_splash"/>
+    </item>
+</layer-list>
+
+
+#2# set launcher theme as :
+
+<style name="SplashTheme" parent="@style/AppTheme">
+    <item name="android:windowBackground">@drawable/splash_xml</item>
+    <item name="android:windowFullscreen">false</item>
+    <item name="colorPrimary">@color/color_bg_splash</item>
+</style>
